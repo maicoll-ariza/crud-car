@@ -1,0 +1,34 @@
+<div class="card col-sm-4 col-md-4" style="width: 18rem">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      Marca: <span class="fw-semibold">{{ car?.marca?.nombre }}</span>
+    </li>
+    <li class="list-group-item">
+      Modelo: <span class="fw-semibold">{{ car?.modelo }}</span>
+    </li>
+    <li class="list-group-item">
+      Color: <span class="fw-semibold">{{ car?.color?.nombre }}</span>
+    </li>
+    <li class="list-group-item">
+      Año: <span class="fw-semibold">{{ car?.anio }}</span>
+    </li>
+  </ul>
+  <div class="card-footer d-flex justify-content-end gap-2">
+    <button
+      type="button"
+      [disabled]="isProcessing"
+      class="btn btn-outline-warning"
+      (click)="onEdit()"
+    >
+      Editar
+    </button>
+    <button
+      type="button"
+      [disabled]="isProcessing"
+      class="btn btn-outline-danger"
+      (click)="onClickDelete()"
+    >
+      Eliminar
+    </button>
+  </div>
+</div>

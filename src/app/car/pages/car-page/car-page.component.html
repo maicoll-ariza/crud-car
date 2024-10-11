@@ -1,0 +1,112 @@
+<div class="container">
+  
+  <div class="row border border-success p-2 border-opacity-10">
+    <div class="col">
+      <h2 class="mb-3">Gestión de automóviles</h2>
+      <form class="p-2" autocomplete="off" [formGroup]="formState" (ngSubmit)="onSubmit()">
+        <!-- Marca -->
+        <div class="row mb-3">
+          <label for="marca" class="col-sm-3 col-form-label">Marca</label>
+          <div class="col-sm-9">
+            <select
+              id="marca"
+              class="form-select"
+              aria-label="Select MARCA"
+              formControlName="marca"
+            >
+              <option selected value="">-- Seleccione --</option>
+              <option *ngFor="let marca of marcas" [value]="marca.id">
+                {{ marca.nombre }}
+              </option>
+            </select>
+            <span *ngIf="isValidField('marca')" class="form-text text-danger">
+              Debe seleccionar una opción
+            </span>
+          </div>
+        </div>
+        <!-- Modelo -->
+        <div class="row mb-3">
+          <label for="modelo" class="col-sm-3 col-form-label">Modelo</label>
+          <div class="col-sm-9">
+            <input
+              id="modelo"
+              type="text"
+              class="form-control"
+              placeholder="Nombre del usuario"
+              formControlName="modelo"
+            />
+
+            <span *ngIf="isValidField('modelo')" class="form-text text-danger">
+              Debe de ser en formato de nombre y apellido
+            </span>
+          </div>
+        </div>
+
+        <!-- Color -->
+        <div class="row mb-3">
+          <label for="color" class="col-sm-3 col-form-label">Color</label>
+          <div class="col-sm-9">
+            <select
+              id="color"
+              class="form-select"
+              aria-label="Select COLOR"
+              formControlName="color"
+            >
+              <option selected value="">-- Seleccione --</option>
+              <option *ngFor="let color of colors" [value]="color.id">
+                {{ color.nombre }}
+              </option>
+            </select>
+            <span *ngIf="isValidField('color')" class="form-text text-danger">
+              Debe seleccionar una opción
+            </span>
+          </div>
+        </div>
+
+        <!-- Año -->
+        <div class="row mb-3">
+          <label for="anio" class="col-sm-3 col-form-label">Año</label>
+          <div class="col-sm-9">
+            <input
+              id="anio"
+              type="date"
+              class="form-control"
+              placeholder="Nombre del usuario"
+              formControlName="anio"
+            />
+
+            <span *ngIf="isValidField('anio')" class="form-text text-danger">
+              Debe de ser en formato de nombre y apellido
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col d-flex justify-content-end gap-2">
+            <button
+              [disabled]="isDisabled"
+              class="btn btn-primary"
+              type="submit"
+            >
+              {{ isEditing ? "Editar" : "Crear" }}
+            </button>
+            <button (click)="resetForm()" [disabled]="isDisabled" class="btn btn-light" type="button">
+              Limpiar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row mt-5 border border-success p-2 border-opacity-10">
+    <h2 class="mb-3">Listado de automóviles</h2>
+
+    <div class="d-flex align-items-center flex-wrap gap-3">
+      <app-card
+        *ngFor="let car of cars"
+        [car]="car"
+        (onSelectToEdit)="selectCar($event)"
+        (onDelete)="onDeleteCar($event)"
+      ></app-card>
+    </div>
+  </div>
+</div>
