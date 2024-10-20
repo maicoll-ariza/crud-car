@@ -1,0 +1,29 @@
+<div class="container-cw">
+  <div class="cw-registro-carousel">
+
+    <div class="fixed-text">
+      Texto fijo...
+    </div>
+
+    <ngb-carousel
+      #carousel
+      [interval]="5000"
+      [pauseOnHover]="pausaEnHover"
+      [pauseOnFocus]="pausaEnFocus"
+      (slide)="onSlide($event)"
+    >
+      <ng-template ngbSlide *ngFor="let img of images; let i = index">
+        <!-- <div class="carousel-caption">
+          <h3>My slide {{ i + 1 }} title</h3>
+        </div> -->
+        <div rel="nofollow noopener noreferrer">
+          <div class="picsum-img-wrapper cw-carousel-img">
+            <img [src]="img" alt="Imagen {{ i + 1 }}" />
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+
+  <div class="child-2">VIEW</div>
+</div>
